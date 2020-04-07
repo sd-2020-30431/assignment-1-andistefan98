@@ -26,6 +26,11 @@ public class GroceryListService {
 	}
 	
 	
+	public List<GroceryList> getAllByUserId(int id){
+		return listRepository.getAllByUserId(id);
+	}
+	
+	
 	public void addList(GroceryList lst) {
 		listRepository.save(lst);
 		
