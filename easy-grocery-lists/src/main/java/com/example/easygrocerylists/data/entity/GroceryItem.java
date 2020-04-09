@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,20 +17,30 @@ public class GroceryItem {
     
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id")
 	int id;
+
+	//@Column(name="list_id")
+	//int list_id;
 	
-	@Column
+	@Column(name="name")
 	String name;
-	@Column
+	@Column(name="quantity")
 	int quantity;
-	@Column
+	@Column(name="calorie_value")
 	float calorieValue;
-	@Column
+	@Column(name="purchase_date")
 	Date purchaseDate;
-	@Column
+	@Column(name="expiration_date")
 	Date expirationDate;
-	@Column
+	@Column(name="consumption_date")
 	Date consumptionDate;
+	
+	@ManyToOne
+	@JoinColumn(name="list_id")
+	GroceryList list;
+	
+	
 	
 	
 	

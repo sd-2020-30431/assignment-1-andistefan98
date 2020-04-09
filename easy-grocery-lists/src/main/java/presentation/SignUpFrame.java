@@ -11,9 +11,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.example.easygrocerylists.business.SignUpValidator;
 import com.example.easygrocerylists.business.UserService;
 import com.example.easygrocerylists.data.entity.User;
+import com.example.easygrocerylists.data.repository.UserRepository;
 
 import javax.swing.JButton;
 
@@ -22,7 +25,13 @@ public class SignUpFrame {
 	private JFrame frmSignUp;
 	private JTextField userText;
 	private JTextField passText;
+	
+	//UserRepository userRepo ;
+	
+	@Autowired
 	UserService userServ ;
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -95,10 +104,13 @@ public class SignUpFrame {
 		signUpBtn.setBounds(146, 219, 108, 34);
 		signUpBtn.addActionListener(new ActionListener() {
 			
+			
 			public void actionPerformed(ActionEvent e) {
+				
 				SignUpValidator validator = new SignUpValidator();
 				User newUser = new User(userText.getText(),passText.getText());
-				//if(validator.checkIfUserValid(newUser)==false) {
+				
+         		//if(validator.checkIfUserValid(newUser)==false) {
 				//	lblChr.setText("Make sure your username & password have at least 4 characters");
 				//	userLabel.setText("Username already taken.");
 				//}

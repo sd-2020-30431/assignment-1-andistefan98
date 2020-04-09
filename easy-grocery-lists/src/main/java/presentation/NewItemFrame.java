@@ -12,6 +12,7 @@ import java.util.Date;
 
 import javax.swing.JTextField;
 
+import com.example.easygrocerylists.business.GroceryItemService;
 import com.example.easygrocerylists.business.ItemValidator;
 import com.example.easygrocerylists.data.entity.GroceryItem;
 
@@ -32,6 +33,9 @@ public class NewItemFrame {
 	private JLabel lblTheDatesMust;
 	private JLabel lblQunatity;
 	private JTextField quantText;
+	
+	GroceryItemService itemService;
+	
 	//JDateChooser datechoose;
 
 	/**
@@ -115,12 +119,15 @@ public class NewItemFrame {
 				
 				String name = nameText.getText();
 				Float caloricValue = Float.parseFloat(caloriesText.getText());
-			//	Int quantity = Integer.parseInteger(quantText.getText());
+			 	int quantity = Integer.parseInt(quantText.getText());
 				Date purchase = ItemValidator.dateCreator(pur1.getText(),pur2.getText());
 				Date expiration = ItemValidator.dateCreator(exp1.getText(),exp2.getText());
 				Date consumption = ItemValidator.dateCreator(con1.getText(),con2.getText());
 				
-			//	GroceryItem newItm = new GroceryItem(name,)
+				GroceryItem newItm = new GroceryItem(name,quantity,caloricValue , purchase, expiration, consumption);
+				
+				itemService.addItem(newItm);
+				
 				
 				NewListFrame frm = new NewListFrame();
 				frm.setVisible(true);

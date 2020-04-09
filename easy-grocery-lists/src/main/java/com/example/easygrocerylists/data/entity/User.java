@@ -54,8 +54,7 @@ public class User {
 	}
 
 
-	@OneToMany
-	@JoinColumn(name = "lists")
+	@OneToMany(mappedBy="userId")
 	List<GroceryList> groceryLists = new ArrayList<GroceryList>();
 	
 	

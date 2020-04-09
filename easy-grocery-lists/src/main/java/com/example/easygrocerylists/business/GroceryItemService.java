@@ -29,8 +29,8 @@ public class GroceryItemService {
 		return itemRepository.findById(id);
 	}
 	
-	public List<GroceryItem> findByListId(int id){
-		return itemRepository.findByListId(id);
+	public List<GroceryItem> findByList(GroceryList list){
+		return itemRepository.findByList(list);
 	}
 	
 	

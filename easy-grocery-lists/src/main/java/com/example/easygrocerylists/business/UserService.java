@@ -16,7 +16,11 @@ import com.example.easygrocerylists.data.repository.UserRepository;
 public class UserService {
 		
 	@Autowired
-    private UserRepository userRepository ;
+    private  UserRepository userRepository ;
+	
+	public UserService(UserRepository userRepo) {
+		this.userRepository = userRepo;
+	}
 	
 	public List<User> getAllUsers(){
 		List<User> myUsers = new ArrayList<User>();
@@ -25,11 +29,7 @@ public class UserService {
 		return myUsers;
 		
 	}
-	
-/*	
-	public User getUserById(int id){
-		return userRepository.getUserById(id);
-	}*/
+
 	
 	public Optional<User> getUserByUsername(String username) {
 		return userRepository.findById(username);
@@ -37,6 +37,10 @@ public class UserService {
 	
 	
 	public void addUser(User user) {
+		if(userRepository == null) {
+			System.out.println("E NULLLLLLl");
+		}
+	
 		userRepository.save(user);
 		
 	}

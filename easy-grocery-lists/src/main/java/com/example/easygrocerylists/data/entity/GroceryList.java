@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,28 +21,29 @@ public class GroceryList {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int id;
+	@Column(name="list_id")
+	int list_id;
 	
-	@Column
+	@Column(name="list_name")
 	String listName;
 	
-	@OneToMany
-	@JoinColumn(name="items")
-	List<GroceryItem> items = new ArrayList<GroceryItem>();
+	@OneToMany(mappedBy="list")
+	List<GroceryItem> itemsList = new ArrayList<GroceryItem>();
+	
 	
 	
 	@ManyToOne
-	@JoinColumn(name="users")
-	User userHavingList ;
+	@JoinColumn(name="user_id")
+	User userId ;
 	
 	
 	
 	public int getId() {
-		return id;
+		return list_id;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.list_id = id;
 	}
 
 	public String getListName() {
@@ -54,11 +56,11 @@ public class GroceryList {
 
 	
 	public List<GroceryItem> getItems() {
-		return items;
+		return itemsList;
 	}
 
 	public void setItems(List<GroceryItem> items) {
-		this.items = items;
+		this.itemsList = items;
 	}
 
 	public GroceryList() {
@@ -66,11 +68,11 @@ public class GroceryList {
 	}
 
 	public User getUserHavingList() {
-		return userHavingList;
+		return userId;
 	}
 
 	public void setUserHavingList(User userHavingList) {
-		this.userHavingList = userHavingList;
+		this.userId = userHavingList;
 	}
 	
 	
