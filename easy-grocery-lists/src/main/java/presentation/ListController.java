@@ -16,13 +16,13 @@ import com.example.easygrocerylists.data.entity.User;
 public class ListController {
 
 	
-	static void saveList(JFrame frmGroceryList, Optional<User> user, UserService service, GroceryListService listServ,GroceryList items,GroceryItemService itemServ,String name) {
+	static void saveList(JFrame frmGroceryList, Optional<User> user, UserService service, GroceryListService listServ,GroceryList items,GroceryItemService itemServ) {
 		
 		/*if(items.getItems().size()>0) {
 			 listServ.addList(items);
 			}
 		*/
-		items.setListName(name);
+	
 		
 		MainFrame frm = new MainFrame(user,service,listServ,itemServ);
 		frm.setVisible(true);

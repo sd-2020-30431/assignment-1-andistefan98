@@ -88,7 +88,7 @@ public class GoalFrame {
 			    Optional<User> usr = service.getUserByUsername(user.get().getUsername())	;
 				user.get().setCaloricGoal(Integer.parseInt(caloriesGoalText.getText()));			
 							
-				System.out.println(user.get().getCaloricGoal());
+				//System.out.println(user.get().getCaloricGoal());
 				
 				service.addUser(user.get());
 				

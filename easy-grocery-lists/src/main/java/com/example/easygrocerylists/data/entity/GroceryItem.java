@@ -62,6 +62,10 @@ public class GroceryItem {
 		
 	}
 	
+	public int getId() {
+		return id;
+	}
+	
 	public String getName() {
 		return name;
 	}

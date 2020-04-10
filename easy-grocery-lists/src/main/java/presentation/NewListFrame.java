@@ -108,10 +108,7 @@ public class NewListFrame {
 		btnAddItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				/*if(control ==  null) {
-					System.out.println("AIIIICCICIIC");
-				}*/
-				
+			
 				ListController.addNewItem(frmGroceryList,user,service, listServ, items ,itemServ,intermList);
 			}
 		});
@@ -122,30 +119,15 @@ public class NewListFrame {
 		btnSaveList.setBounds(235, 341, 127, 45);
 		btnSaveList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	
-			System.out.println(nameTxt.getText());
+			//System.out.println(nameTxt.getText());
 			//items.setListName(nameTxt.getText());
-			ListController.saveList(frmGroceryList,user,service, listServ,items, itemServ,nameTxt.getText());
+			ListController.saveList(frmGroceryList,user,service, listServ,items, itemServ);
 			
 			}
 		});
 		panel.add(btnSaveList);
 		
-		
-		
-		JButton changeBtn = new JButton("Change name");
-		changeBtn.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		changeBtn.setBounds(446, 14, 123, 25);
-		changeBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {	
-			System.out.println(nameTxt.getText());
-			//items.setListName(nameTxt.getText());
-			
-			
-			}
-		});
-		
-		panel.add(changeBtn);
-		
+
 		
 	}
 

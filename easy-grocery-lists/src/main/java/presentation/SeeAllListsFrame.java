@@ -89,7 +89,7 @@ public class SeeAllListsFrame {
 		panel.setLayout(null);
 		
 
-	List<GroceryList> usersLists = listServ.getAllByUserId(user.get());
+	  List<GroceryList> usersLists = listServ.getAllByUserId(user.get());
 		
 		
 		List<GroceryItem> itemsOfUser = new ArrayList<GroceryItem>();

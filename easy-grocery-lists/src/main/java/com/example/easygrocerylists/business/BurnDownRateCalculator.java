@@ -32,7 +32,7 @@ public class BurnDownRateCalculator {
 	}
 	
 	
-	public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
+	public static LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
 	    return dateToConvert.toInstant()
 	      .atZone(ZoneId.systemDefault())
 	      .toLocalDate();

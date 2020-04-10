@@ -67,13 +67,13 @@ public class MainFrame {
 	private void initialize() {
 		frmMainMenu = new JFrame();
 		frmMainMenu.setTitle("Main Menu");
-		frmMainMenu.setBounds(100, 100, 637, 467);
+		frmMainMenu.setBounds(100, 100, 597, 537);
 		frmMainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMainMenu.getContentPane().setLayout(null);
 		frmMainMenu.setLocationRelativeTo(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 619, 420);
+		panel.setBounds(0, 0, 587, 498);
 		frmMainMenu.getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -98,21 +98,9 @@ public class MainFrame {
 		btnSeeReports.setBackground(Color.WHITE);
 		btnSeeReports.setForeground(Color.BLACK);
 		btnSeeReports.setFont(new Font("Sylfaen", Font.PLAIN, 24));
-		btnSeeReports.setBounds(137, 104, 310, 67);
+		btnSeeReports.setBounds(137, 103, 310, 67);
 		panel.add(btnSeeReports);
 		
-		/*JButton btnDonate = new JButton("Donate to charity");
-		btnDonate.setBackground(Color.WHITE);
-		btnDonate.setFont(new Font("Sylfaen", Font.PLAIN, 24));
-		btnDonate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DonationFrame frm = new DonationFrame(user,service);
-				frm.setVisible(true);
-				frmMainMenu.dispose();
-			}
-		});
-		btnDonate.setBounds(137, 203, 310, 67);
-		panel.add(btnDonate);*/
 		
 		JButton btnGoal = new JButton("Update caloric goal");
 		btnGoal.setFont(new Font("Sylfaen", Font.PLAIN, 24));
@@ -124,7 +112,7 @@ public class MainFrame {
 				frmMainMenu.dispose();
 			}
 		});
-		btnGoal.setBounds(137, 301, 310, 67);
+		btnGoal.setBounds(137, 288, 310, 67);
 		panel.add(btnGoal);
 		
 		JButton showAllBtn = new JButton("See all lists");
@@ -143,8 +131,21 @@ public class MainFrame {
 					
 			}
 		});
-		showAllBtn.setBounds(137, 197, 310, 67);
+		showAllBtn.setBounds(137, 196, 310, 67);
 		panel.add(showAllBtn);
+		
+		JButton btnDonate = new JButton("Donate to local charities");
+		btnDonate.setFont(new Font("Sylfaen", Font.PLAIN, 24));
+		btnDonate.setBounds(137, 383, 310, 67);
+		btnDonate.setBackground(Color.WHITE);
+		btnDonate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DonationFrame frm = new DonationFrame(user,service,listServ,itemServ);
+				frm.setVisible(true);
+				frmMainMenu.dispose();
+			}
+		});
+		panel.add(btnDonate);
 	}
 
 	public void setVisible(boolean b) {

@@ -40,7 +40,15 @@ public class GroceryItemService {
 	}
 	
 	public void deleteItem(int id) {
+	
+		GroceryItem itm = itemRepository.findById(id);
+		System.out.println( "  ->->  " + itm.getId());
+
 	    itemRepository.deleteById(id);
+	   // itemRepository.delete(itm);
+
+	    itemRepository.flush();
+	
 	}
 
 }
