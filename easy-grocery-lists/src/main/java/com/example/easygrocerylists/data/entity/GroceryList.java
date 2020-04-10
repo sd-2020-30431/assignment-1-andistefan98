@@ -29,7 +29,7 @@ public class GroceryList {
 	String listName;
 	
 	
-	@OneToMany(mappedBy="list")
+	@OneToMany(mappedBy="list",cascade = CascadeType.ALL)
 	List<GroceryItem> itemsList = new ArrayList<GroceryItem>();
 	
 	
@@ -38,9 +38,10 @@ public class GroceryList {
 	@JoinColumn(name="user_id")
 	User userId ;
 	
-	public GroceryList(String name, User user) {
-		this.listName = name;
+	public GroceryList(String name , User user) {
+		
 		this.userId= user;
+		this.listName = name;
 	}
 	
 	
@@ -70,9 +71,6 @@ public class GroceryList {
 		this.itemsList = items;
 	}
 
-	public GroceryList() {
-		
-	}
 
 	public User getUserHavingList() {
 		return userId;

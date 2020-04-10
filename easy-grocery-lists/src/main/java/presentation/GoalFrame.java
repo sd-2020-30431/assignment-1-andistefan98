@@ -85,6 +85,13 @@ public class GoalFrame {
 		btnUpdateGoal.setBounds(146, 163, 109, 38);
 		btnUpdateGoal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			    Optional<User> usr = service.getUserByUsername(user.get().getUsername())	;
+				user.get().setCaloricGoal(Integer.parseInt(caloriesGoalText.getText()));			
+							
+				System.out.println(user.get().getCaloricGoal());
+				
+				service.addUser(user.get());
+				
 				MainFrame frm = new MainFrame(user,service,listServ ,itemServ);
 				frm.setVisible(true);
 				frmUpdateGoal.dispose();

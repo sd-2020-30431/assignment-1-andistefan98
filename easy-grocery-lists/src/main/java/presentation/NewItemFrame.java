@@ -9,6 +9,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import javax.swing.JTextField;
@@ -46,6 +47,7 @@ public class NewItemFrame {
 	static GroceryListService listServ ;
 	static GroceryItemService itemServ;
 	
+	static List<GroceryItem> intermList;
 	//JDateChooser datechoose;
 
 	/**
@@ -55,7 +57,7 @@ public class NewItemFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NewItemFrame window = new NewItemFrame(user,service,list,listServ,itemServ);
+					NewItemFrame window = new NewItemFrame(user,service,list,listServ,itemServ,intermList);
 					window.frmNewItem.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -66,14 +68,16 @@ public class NewItemFrame {
 
 	/**
 	 * Create the application.
+	 * @param intermList 
 	 */
-	public NewItemFrame(Optional<User> user , UserService service,GroceryList list,	GroceryListService listServ , GroceryItemService itemServ) {
+	public NewItemFrame(Optional<User> user , UserService service,GroceryList list,	GroceryListService listServ , GroceryItemService itemServ, List<GroceryItem> intermList) {
 		initialize();
 		this.user =user;
 		this.service = service;
 		this.list = list ;
 		this.listServ =listServ ;
 		this.itemServ = itemServ;
+		this.intermList = intermList;
 	}
 
 	/**
@@ -142,11 +146,14 @@ public class NewItemFrame {
 				Date expiration = ItemValidator.dateCreator(exp2.getText(),exp1.getText());
 				Date consumption = ItemValidator.dateCreator(con2.getText(),con1.getText());
 				
-				GroceryItem newItm = new GroceryItem(name,quantity,caloricValue , purchase, expiration, consumption,list);
 				
-				if(ItemValidator.checkItemValidity(newItm) == true)
+				
+				if(ItemValidator.checkItemValidity(name,quantity,caloricValue , purchase, expiration, consumption,list) == true)
 				{
-					AddItemController.addItem(frmNewItem , user ,service, list,	listServ , itemServ , newItm);
+					
+					GroceryItem newItm = new GroceryItem(name,quantity,caloricValue , purchase, expiration, consumption,list);
+					intermList.add(newItm);
+					AddItemController.addItem(frmNewItem , user ,service, list,	listServ , itemServ , newItm , intermList);
 				}
 				else {
 					System.out.println("NOT GOOOD");
@@ -195,7 +202,7 @@ public class NewItemFrame {
 		btnReturn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 							
-				NewListFrame frm = new NewListFrame(user,service,list,listServ,itemServ);
+				NewListFrame frm = new NewListFrame(user,service,list,listServ,itemServ,intermList);
 				frm.setVisible(true);
 				frmNewItem.dispose();
 			}

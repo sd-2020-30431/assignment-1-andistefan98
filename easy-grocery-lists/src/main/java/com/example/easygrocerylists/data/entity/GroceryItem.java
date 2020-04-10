@@ -37,7 +37,7 @@ public class GroceryItem {
 	@Column(name="consumption_date")
 	Date consumptionDate;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="list_id")
 	GroceryList list;
 	

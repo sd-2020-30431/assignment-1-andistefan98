@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import com.example.easygrocerylists.business.GroceryItemService;
 import com.example.easygrocerylists.business.GroceryListService;
 import com.example.easygrocerylists.business.UserService;
+import com.example.easygrocerylists.data.entity.GroceryItem;
 import com.example.easygrocerylists.data.entity.GroceryList;
 import com.example.easygrocerylists.data.entity.User;
 
@@ -18,6 +19,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class MainFrame {
@@ -79,10 +82,13 @@ public class MainFrame {
 		btnNewList.setBackground(Color.WHITE);
 		btnNewList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GroceryList newList = new GroceryList("initial name",user.get());
-				NewListFrame frm = new NewListFrame(user,service,newList,listServ,itemServ);
-				frm.setVisible(true);
+			
+				List<GroceryItem> intermList = new ArrayList<GroceryItem>();
+				
+				ListNameFrame lstName = new ListNameFrame(user,service,listServ,itemServ,intermList);
+				lstName.setVisible(true);
 				frmMainMenu.dispose();
+			
 			}
 		});
 		btnNewList.setBounds(137, 13, 310, 67);
@@ -120,6 +126,22 @@ public class MainFrame {
 		});
 		btnGoal.setBounds(137, 301, 310, 67);
 		panel.add(btnGoal);
+		
+		JButton showAllBtn = new JButton("See all lists");
+		showAllBtn.setFont(new Font("Sylfaen", Font.PLAIN, 24));
+		showAllBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+						List<GroceryItem> intermList = new ArrayList<GroceryItem>();
+						
+						SeeAllListsFrame lstName = new SeeAllListsFrame(user,service,listServ,itemServ,intermList);
+						lstName.setVisible(true);
+						frmMainMenu.dispose();
+					
+			}
+		});
+		showAllBtn.setBounds(137, 197, 310, 67);
+		panel.add(showAllBtn);
 	}
 
 	public void setVisible(boolean b) {

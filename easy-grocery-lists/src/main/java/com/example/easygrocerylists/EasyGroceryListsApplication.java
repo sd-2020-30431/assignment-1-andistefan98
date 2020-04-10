@@ -45,8 +45,7 @@ public class EasyGroceryListsApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("AICI");
-		
+
 		StartFrame frm = new StartFrame(userServ,listServ,itemServ);
 		frm.setVisible(true);
 		

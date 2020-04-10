@@ -16,5 +16,7 @@ public interface GroceryListRepository extends JpaRepository<GroceryList , Integ
 	
 	public List<GroceryList> getAllByUserId(int id);
 
+
+
 }
 

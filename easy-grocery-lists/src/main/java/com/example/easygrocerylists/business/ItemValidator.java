@@ -7,10 +7,13 @@ import java.util.Calendar;
 import java.util.Date;
 
 import com.example.easygrocerylists.data.entity.GroceryItem;
+import com.example.easygrocerylists.data.entity.GroceryList;
 
 public class ItemValidator {
 	
-	public static boolean checkItemValidity(GroceryItem item) {
+
+	
+	public static boolean checkItemValidity(String name, int quantity , float caloricValue , Date purchase, Date exp, Date con, GroceryList list) {
 		Date today = new Date(); 
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(today);
@@ -19,18 +22,18 @@ public class ItemValidator {
 		int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH); 
 		int month = cal.get(Calendar.MONTH); 
 		
-		if(item.getName() == null)
+		if( name == null)
 			return false;
-		if(item.getCalorieValue()<=0)
+		if(caloricValue <=0)
 			return false;
-		if(item.getQuantity()<=0)
+		if(quantity<=0)
 			return false;
 		
-		if(month == item.getPurchaseDate().getMonth()) 
-			if(dayOfMonth < item.getPurchaseDate().getDate())
+		if(month == purchase.getMonth()) 
+			if(dayOfMonth < purchase.getDate())
 				return false;
 		
-		if(month < item.getPurchaseDate().getMonth())
+		if(month < purchase.getMonth())
 			return false;
 		
 		

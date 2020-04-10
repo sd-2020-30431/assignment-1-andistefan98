@@ -1,5 +1,6 @@
 package presentation;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.swing.JFrame;
@@ -15,12 +16,12 @@ public class AddItemController {
 
 	
 	
-	public static void  addItem(JFrame frmNewItem,Optional<User> user , UserService service,GroceryList list,	GroceryListService listServ , GroceryItemService itemServ ,GroceryItem newItm) {
+	public static void  addItem(JFrame frmNewItem,Optional<User> user , UserService service,GroceryList list,	GroceryListService listServ , GroceryItemService itemServ ,GroceryItem newItm, List<GroceryItem> intermList) {
 		
 		itemServ.addItem(newItm);
-        list.getItems().add(newItm);
+        //list.getItems().add(newItm);
 		
-		NewListFrame frm = new NewListFrame(user,service,list,listServ,itemServ);
+		NewListFrame frm = new NewListFrame(user,service,list,listServ,itemServ, intermList);
 		frm.setVisible(true);
 		frmNewItem.dispose();
 	}
