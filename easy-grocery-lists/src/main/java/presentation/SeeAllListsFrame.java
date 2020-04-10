@@ -1,21 +1,32 @@
 package presentation;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 
 import com.example.easygrocerylists.business.GroceryItemService;
 import com.example.easygrocerylists.business.GroceryListService;
 import com.example.easygrocerylists.business.UserService;
 import com.example.easygrocerylists.data.entity.GroceryItem;
+import com.example.easygrocerylists.data.entity.GroceryList;
 import com.example.easygrocerylists.data.entity.User;
 
 import javax.swing.JLabel;
+import javax.swing.JList;
+
 import java.awt.Font;
+import java.awt.ScrollPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import javax.swing.JButton;
 
 public class SeeAllListsFrame {
 
@@ -24,7 +35,7 @@ public class SeeAllListsFrame {
 	static UserService service;
 	static GroceryListService listServ;
 	static GroceryItemService itemServ;
-	static List<GroceryItem> intermList;
+	
 
 	/**
 	 * Launch the application.
@@ -33,7 +44,7 @@ public class SeeAllListsFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SeeAllListsFrame window = new SeeAllListsFrame(user,service,listServ,itemServ , intermList);
+					SeeAllListsFrame window = new SeeAllListsFrame(user,service,listServ,itemServ );
 					window.frmGroceryLists.setVisible(true);
 					
 				} catch (Exception e) {
@@ -51,13 +62,15 @@ public class SeeAllListsFrame {
 	 * @param service 
 	 * @param user 
 	 */
-	public SeeAllListsFrame(Optional<User> user, UserService service, GroceryListService listServ, GroceryItemService itemServ, List<GroceryItem> intermList) {
-		initialize();
+	public SeeAllListsFrame(Optional<User> user, UserService service, GroceryListService listServ, GroceryItemService itemServ) {
+	
 		this.user = user;
+		System.out.println(user.get().getUsername() + " asta ");
 		this.service = service;
 		this.listServ = listServ;
 		this.itemServ = itemServ;
-		this.intermList = intermList;
+		initialize();
+
 	}
 
 	/**
@@ -75,11 +88,34 @@ public class SeeAllListsFrame {
 		frmGroceryLists.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(212, 69, 21, 243);
-		panel.add(scrollBar);
+
+	List<GroceryList> usersLists = listServ.getAllByUserId(user.get());
 		
-		ListsShowController.showAll(scrollBar,user,service,itemServ,listServ);
+		
+		List<GroceryItem> itemsOfUser = new ArrayList<GroceryItem>();
+		
+	 for(GroceryList lst : usersLists) {
+		 System.out.println("list :  " + lst.getId() + "\n");
+		 
+		 List<GroceryItem> itemsFromList = itemServ.findByList(lst);
+
+		 for(GroceryItem itm: itemsFromList) {
+			itemsOfUser.add(itm);
+		 }
+		}
+		
+
+		JList lsst = new JList(itemsOfUser.toArray());
+	
+		lsst.setBounds(100, 69, 320, 263);
+		lsst.setVisibleRowCount(20);
+		lsst.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		JScrollPane scrollPane_1 = new JScrollPane(lsst);
+	    scrollPane_1.setBounds(100, 69, 280, 243);
+
+		panel.add(scrollPane_1);
+		
+
 		
 		JLabel lblAllItemsFor = new JLabel("All items for user : ");
 		lblAllItemsFor.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -88,12 +124,33 @@ public class SeeAllListsFrame {
 		
 		JLabel lblUser = new JLabel("New label");
 		lblUser.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+	
 		lblUser.setBounds(293, 13, 141, 43);
-		{
-			lblUser.setText(user.get().getUsername());
-		}
+		
+		ListsShowController.userShow(lblUser,user);
+		
+		
+		lblUser.setText(user.get().getUsername());
+		
+		
 		
 		panel.add(lblUser);
+		
+		JButton backBtn = new JButton("Back");
+		backBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		backBtn.setBounds(174, 353, 97, 25);
+		backBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+						MainFrame lstName = new MainFrame(user,service,listServ,itemServ);
+						lstName.setVisible(true);
+						frmGroceryLists.dispose();
+					
+			}
+		});
+		panel.add(backBtn);
+
 	}
 
 	public void setVisible(boolean b) {

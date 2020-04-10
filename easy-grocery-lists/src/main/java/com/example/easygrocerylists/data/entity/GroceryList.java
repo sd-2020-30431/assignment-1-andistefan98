@@ -29,12 +29,12 @@ public class GroceryList {
 	String listName;
 	
 	
-	@OneToMany(mappedBy="list",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="list",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	List<GroceryItem> itemsList = new ArrayList<GroceryItem>();
 	
 	
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="user_id")
 	User userId ;
 	
@@ -44,6 +44,10 @@ public class GroceryList {
 		this.listName = name;
 	}
 	
+	
+	public GroceryList() {
+		
+	}
 	
 	
 	public int getId() {

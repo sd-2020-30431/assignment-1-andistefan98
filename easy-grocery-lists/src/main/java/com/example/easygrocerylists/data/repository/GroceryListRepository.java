@@ -8,13 +8,14 @@ import org.springframework.stereotype.Repository;
 
 import com.example.easygrocerylists.data.entity.GroceryItem;
 import com.example.easygrocerylists.data.entity.GroceryList;
+import com.example.easygrocerylists.data.entity.User;
 
 @Repository
 public interface GroceryListRepository extends JpaRepository<GroceryList , Integer>{
 	
 	public List<GroceryList> findAll();
 	
-	public List<GroceryList> getAllByUserId(int id);
+	public List<GroceryList> getAllByUserId(User userId);
 
 
 

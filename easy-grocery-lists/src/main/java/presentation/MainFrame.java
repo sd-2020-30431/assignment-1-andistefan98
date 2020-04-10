@@ -129,12 +129,15 @@ public class MainFrame {
 		
 		JButton showAllBtn = new JButton("See all lists");
 		showAllBtn.setFont(new Font("Sylfaen", Font.PLAIN, 24));
+		showAllBtn.setBackground(Color.WHITE);
 		showAllBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-						List<GroceryItem> intermList = new ArrayList<GroceryItem>();
+						if(user.isPresent()){
+							System.out.println("ESTE");
+						}
 						
-						SeeAllListsFrame lstName = new SeeAllListsFrame(user,service,listServ,itemServ,intermList);
+						SeeAllListsFrame lstName = new SeeAllListsFrame(user,service,listServ,itemServ);
 						lstName.setVisible(true);
 						frmMainMenu.dispose();
 					

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.easygrocerylists.data.entity.GroceryList;
+import com.example.easygrocerylists.data.entity.User;
 import com.example.easygrocerylists.data.repository.GroceryListRepository;
 
 @Service
@@ -24,8 +25,8 @@ public class GroceryListService {
 	}
 	
 	
-	public List<GroceryList> getAllByUserId(int id){
-		return listRepository.getAllByUserId(id);
+	public List<GroceryList> getAllByUserId(User userId){
+		return listRepository.getAllByUserId(userId);
 	}
 	
 	

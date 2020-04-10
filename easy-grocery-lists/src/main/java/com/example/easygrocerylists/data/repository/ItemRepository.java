@@ -14,7 +14,7 @@ public interface ItemRepository extends JpaRepository<GroceryItem , Integer>{
 	
 	public GroceryItem findById(int id);
 	
-	public List<GroceryItem> findByList(GroceryList list);
+	public List<GroceryItem> findByList(GroceryList listId);
 	
     public List<GroceryItem> findAll();
 
