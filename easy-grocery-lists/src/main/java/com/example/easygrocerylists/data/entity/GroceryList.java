@@ -3,6 +3,7 @@ package com.example.easygrocerylists.data.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,6 +28,7 @@ public class GroceryList {
 	@Column(name="list_name")
 	String listName;
 	
+	
 	@OneToMany(mappedBy="list")
 	List<GroceryItem> itemsList = new ArrayList<GroceryItem>();
 	
@@ -35,6 +37,11 @@ public class GroceryList {
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	User userId ;
+	
+	public GroceryList(String name, User user) {
+		this.listName = name;
+		this.userId= user;
+	}
 	
 	
 	

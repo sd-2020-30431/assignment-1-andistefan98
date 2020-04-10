@@ -2,6 +2,7 @@ package com.example.easygrocerylists.data.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,7 +37,7 @@ public class GroceryItem {
 	@Column(name="consumption_date")
 	Date consumptionDate;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="list_id")
 	GroceryList list;
 	
@@ -44,13 +45,14 @@ public class GroceryItem {
 	
 	
 	
-	public GroceryItem(String nmm, int qnt , float calories, Date purch, Date exp, Date consump) {
+	public GroceryItem(String nmm, int qnt , float calories, Date purch, Date exp, Date consump,GroceryList list) {
 		this.name= nmm;
 		this.quantity = qnt;
 		this.calorieValue = calories;
 		this.purchaseDate = purch;
 		this.expirationDate =exp;
 		this.consumptionDate = consump; 
+		this.list= list;
 		
 	}
 	

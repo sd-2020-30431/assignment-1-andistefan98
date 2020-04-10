@@ -6,6 +6,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import com.example.easygrocerylists.business.GroceryItemService;
+import com.example.easygrocerylists.business.GroceryListService;
+import com.example.easygrocerylists.business.UserService;
+
 import javax.swing.JButton;
 
 public class StartFrame {
@@ -15,11 +20,17 @@ public class StartFrame {
 	/**
 	 * Launch the application.
 	 */
+	
+	static UserService userS ; 
+	static GroceryListService listServ ;
+	static GroceryItemService itemServ;
+
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StartFrame window = new StartFrame();
+					StartFrame window = new StartFrame(userS,listServ,itemServ);
 					window.frmStart.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -30,10 +41,17 @@ public class StartFrame {
 
 	/**
 	 * Create the application.
+	 * @param listServ 
+	 * @param itemServ 
 	 */
-	public StartFrame() {
+	public StartFrame(UserService usr, GroceryListService listServ, GroceryItemService itemServ) {
 		initialize();
+		this.userS = usr;
+		this.listServ = listServ;
+		this.itemServ = itemServ;
 	}
+
+	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -55,7 +73,7 @@ public class StartFrame {
 		loginBtn.setBounds(39, 106, 150, 75);
 		loginBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				LoginFrame frm = new LoginFrame();
+				LoginFrame frm = new LoginFrame(userS,listServ,itemServ);
 				frm.setVisible(true);
 				frmStart.dispose();
 			}
@@ -66,7 +84,7 @@ public class StartFrame {
 		signUpBtn.setBounds(242, 106, 150, 75);
 		signUpBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SignUpFrame frm = new SignUpFrame();
+				SignUpFrame frm = new SignUpFrame(userS,listServ,itemServ);
 				frm.setVisible(true);
 				frmStart.dispose();
 			}

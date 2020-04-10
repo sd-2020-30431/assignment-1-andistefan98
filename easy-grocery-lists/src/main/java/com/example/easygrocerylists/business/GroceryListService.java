@@ -5,10 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.easygrocerylists.data.entity.GroceryList;
-import com.example.easygrocerylists.data.repository.GroceryListRepository;
-//import javax.inject.Inject;
 
+import com.example.easygrocerylists.data.entity.GroceryList;
 import com.example.easygrocerylists.data.repository.GroceryListRepository;
 
 @Service

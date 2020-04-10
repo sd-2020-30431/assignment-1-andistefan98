@@ -4,6 +4,13 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import com.example.easygrocerylists.business.GroceryItemService;
+import com.example.easygrocerylists.business.GroceryListService;
+import com.example.easygrocerylists.business.UserService;
+import com.example.easygrocerylists.data.entity.GroceryList;
+import com.example.easygrocerylists.data.entity.User;
+
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
@@ -11,11 +18,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Optional;
 
 public class MainFrame {
 
 	private JFrame frmMainMenu;
-
+	static GroceryItemService itemServ;
+    static Optional<User> user ;
+    static UserService service;
+	static GroceryListService listServ ;
 	/**
 	 * Launch the application.
 	 */
@@ -23,7 +34,7 @@ public class MainFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainFrame window = new MainFrame();
+					MainFrame window = new MainFrame(user,service,listServ,itemServ);
 					window.frmMainMenu.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,9 +45,17 @@ public class MainFrame {
 
 	/**
 	 * Create the application.
+	 * @param srv 
+	 * @param user 
+	 * @param lsrv 
+	 * @param itemServ 
 	 */
-	public MainFrame() {
+	public MainFrame(Optional<User> user, UserService srv, GroceryListService lsrv, GroceryItemService itemServ) {
 		initialize();
+		this.user= user;
+		this.service = srv;
+		this.listServ = lsrv;
+		this.itemServ= itemServ;
 	}
 
 	/**
@@ -60,7 +79,8 @@ public class MainFrame {
 		btnNewList.setBackground(Color.WHITE);
 		btnNewList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				NewListFrame frm = new NewListFrame();
+				GroceryList newList = new GroceryList("initial name",user.get());
+				NewListFrame frm = new NewListFrame(user,service,newList,listServ,itemServ);
 				frm.setVisible(true);
 				frmMainMenu.dispose();
 			}
@@ -75,31 +95,25 @@ public class MainFrame {
 		btnSeeReports.setBounds(137, 104, 310, 67);
 		panel.add(btnSeeReports);
 		
-		JButton btnDonate = new JButton("Donate to charity");
-		btnDonate.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				new DonationFrame();
-			}
-		});
+		/*JButton btnDonate = new JButton("Donate to charity");
 		btnDonate.setBackground(Color.WHITE);
 		btnDonate.setFont(new Font("Sylfaen", Font.PLAIN, 24));
 		btnDonate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DonationFrame frm = new DonationFrame();
+				DonationFrame frm = new DonationFrame(user,service);
 				frm.setVisible(true);
 				frmMainMenu.dispose();
 			}
 		});
 		btnDonate.setBounds(137, 203, 310, 67);
-		panel.add(btnDonate);
+		panel.add(btnDonate);*/
 		
 		JButton btnGoal = new JButton("Update caloric goal");
 		btnGoal.setFont(new Font("Sylfaen", Font.PLAIN, 24));
 		btnGoal.setBackground(Color.WHITE);
 		btnGoal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GoalFrame frm = new GoalFrame();
+				GoalFrame frm = new GoalFrame(user,service,listServ,itemServ);
 				frm.setVisible(true);
 				frmMainMenu.dispose();
 			}

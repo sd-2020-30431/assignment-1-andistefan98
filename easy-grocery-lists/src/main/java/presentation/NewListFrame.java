@@ -3,18 +3,39 @@ package presentation;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.ListModel;
+
+import com.example.easygrocerylists.business.GroceryItemService;
+import com.example.easygrocerylists.business.GroceryListService;
+import com.example.easygrocerylists.business.UserService;
+import com.example.easygrocerylists.data.entity.GroceryItem;
+import com.example.easygrocerylists.data.entity.GroceryList;
+import com.example.easygrocerylists.data.entity.User;
+
 import javax.swing.JScrollBar;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.Optional;
 import java.awt.Color;
 
 public class NewListFrame {
 
 	private JFrame frmGroceryList;
+	
+	static Optional<User> user ;
+    static UserService service;
+    
+    static GroceryList items ;
+	static GroceryListService listServ ;
+	static GroceryItemService itemServ;
+	
+	//ListController control ;
 
 	/**
 	 * Launch the application.
@@ -23,7 +44,7 @@ public class NewListFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NewListFrame window = new NewListFrame();
+					NewListFrame window = new NewListFrame(user,service, items,listServ,itemServ);
 					window.frmGroceryList.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,8 +56,13 @@ public class NewListFrame {
 	/**
 	 * Create the application.
 	 */
-	public NewListFrame() {
+	public NewListFrame(Optional<User> user , UserService service , GroceryList items, 	GroceryListService listServ, GroceryItemService itemServ ) {
 		initialize();
+		this.user =user;
+		this.service = service;
+		this.items = items; 
+		this.listServ = listServ;
+		this.itemServ = itemServ;
 	}
 
 	/**
@@ -54,9 +80,17 @@ public class NewListFrame {
 		panel.setBounds(0, 0, 627, 399);
 		frmGroceryList.getContentPane().add(panel);
 		panel.setLayout(null);
-		
-		JScrollBar itemsScrollBar = new JScrollBar();
+		JList itemsScrollBar = new JList();
+		if(items!=null) {
+		if(items.getItems().size()>0) {
+		itemsScrollBar = new JList( items.getItems().toArray());
 		itemsScrollBar.setBounds(72, 32, 220, 271);
+		}
+		}
+		else {
+			itemsScrollBar = new JList();
+			itemsScrollBar.setBounds(72, 32, 220, 271);
+		}
 		panel.add(itemsScrollBar);
 		
 		JButton btnAddItem = new JButton("Add Item");
@@ -65,9 +99,12 @@ public class NewListFrame {
 		btnAddItem.setBounds(384, 139, 185, 66);
 		btnAddItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				NewItemFrame frm = new NewItemFrame();
-				frm.setVisible(true);
-				frmGroceryList.dispose();
+				
+				/*if(control ==  null) {
+					System.out.println("AIIIICCICIIC");
+				}*/
+				
+				ListController.addNewItem(frmGroceryList,user,service, listServ, items ,itemServ);
 			}
 		});
 		panel.add(btnAddItem);
@@ -76,10 +113,10 @@ public class NewListFrame {
 		btnSaveList.setFont(new Font("Sylfaen", Font.PLAIN, 20));
 		btnSaveList.setBounds(235, 341, 127, 45);
 		btnSaveList.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MainFrame frm = new MainFrame();
-				frm.setVisible(true);
-				frmGroceryList.dispose();
+			public void actionPerformed(ActionEvent e) {				
+				
+			ListController.saveList(frmGroceryList,user,service, listServ,items, itemServ);
+			
 			}
 		});
 		panel.add(btnSaveList);

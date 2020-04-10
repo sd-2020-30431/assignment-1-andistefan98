@@ -13,6 +13,8 @@ import javax.swing.JTextField;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.example.easygrocerylists.business.GroceryItemService;
+import com.example.easygrocerylists.business.GroceryListService;
 import com.example.easygrocerylists.business.SignUpValidator;
 import com.example.easygrocerylists.business.UserService;
 import com.example.easygrocerylists.data.entity.User;
@@ -28,9 +30,11 @@ public class SignUpFrame {
 	
 	//UserRepository userRepo ;
 	
-	@Autowired
-	UserService userServ ;
+	static GroceryListService listServ ;
+	static GroceryItemService itemServ;
+
 	
+	private static UserService userSrvice;
 	
 	/**
 	 * Launch the application.
@@ -39,7 +43,7 @@ public class SignUpFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SignUpFrame window = new SignUpFrame();
+					SignUpFrame window = new SignUpFrame(userSrvice,listServ,itemServ);
 					window.frmSignUp.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,8 +55,11 @@ public class SignUpFrame {
 	/**
 	 * Create the application.
 	 */
-	public SignUpFrame() {
+	public SignUpFrame(UserService userv,GroceryListService listServ,GroceryItemService itemServ2 ) {
 		initialize();
+		this.userSrvice = userv;
+		this.listServ = listServ ;
+		this.itemServ = itemServ2;
 	}
 
 	/**
@@ -117,8 +124,8 @@ public class SignUpFrame {
 				
 				//else {
 				
-				userServ.addUser(newUser);
-				StartFrame frm = new StartFrame();
+				userSrvice.addUser(newUser);
+				StartFrame frm = new StartFrame(userSrvice,	listServ ,itemServ);
 				frm.setVisible(true);
 				frmSignUp.dispose();
 				//}

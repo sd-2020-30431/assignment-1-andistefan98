@@ -33,6 +33,10 @@ public class User {
 		this.password =pass;
 	}
 
+	
+	public User() {
+		
+	}
 
 	public String getUsername() {
 		return username;

@@ -9,12 +9,17 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
+import java.util.Optional;
 
 import javax.swing.JTextField;
 
 import com.example.easygrocerylists.business.GroceryItemService;
+import com.example.easygrocerylists.business.GroceryListService;
 import com.example.easygrocerylists.business.ItemValidator;
+import com.example.easygrocerylists.business.UserService;
 import com.example.easygrocerylists.data.entity.GroceryItem;
+import com.example.easygrocerylists.data.entity.GroceryList;
+import com.example.easygrocerylists.data.entity.User;
 
 import javax.swing.JButton;
 import datechooser.beans.DateChooserCombo;
@@ -34,7 +39,12 @@ public class NewItemFrame {
 	private JLabel lblQunatity;
 	private JTextField quantText;
 	
-	GroceryItemService itemService;
+	static Optional<User> user ;
+    static UserService service;
+	
+	static GroceryList list ;
+	static GroceryListService listServ ;
+	static GroceryItemService itemServ;
 	
 	//JDateChooser datechoose;
 
@@ -45,7 +55,7 @@ public class NewItemFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NewItemFrame window = new NewItemFrame();
+					NewItemFrame window = new NewItemFrame(user,service,list,listServ,itemServ);
 					window.frmNewItem.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,8 +67,13 @@ public class NewItemFrame {
 	/**
 	 * Create the application.
 	 */
-	public NewItemFrame() {
+	public NewItemFrame(Optional<User> user , UserService service,GroceryList list,	GroceryListService listServ , GroceryItemService itemServ) {
 		initialize();
+		this.user =user;
+		this.service = service;
+		this.list = list ;
+		this.listServ =listServ ;
+		this.itemServ = itemServ;
 	}
 
 	/**
@@ -117,21 +132,27 @@ public class NewItemFrame {
 		btnAddItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				
+				
+				
 				String name = nameText.getText();
 				Float caloricValue = Float.parseFloat(caloriesText.getText());
 			 	int quantity = Integer.parseInt(quantText.getText());
-				Date purchase = ItemValidator.dateCreator(pur1.getText(),pur2.getText());
-				Date expiration = ItemValidator.dateCreator(exp1.getText(),exp2.getText());
-				Date consumption = ItemValidator.dateCreator(con1.getText(),con2.getText());
+				Date purchase = ItemValidator.dateCreator(pur2.getText(),pur1.getText());
+				Date expiration = ItemValidator.dateCreator(exp2.getText(),exp1.getText());
+				Date consumption = ItemValidator.dateCreator(con2.getText(),con1.getText());
 				
-				GroceryItem newItm = new GroceryItem(name,quantity,caloricValue , purchase, expiration, consumption);
+				GroceryItem newItm = new GroceryItem(name,quantity,caloricValue , purchase, expiration, consumption,list);
 				
-				itemService.addItem(newItm);
+				if(ItemValidator.checkItemValidity(newItm) == true)
+				{
+					AddItemController.addItem(frmNewItem , user ,service, list,	listServ , itemServ , newItm);
+				}
+				else {
+					System.out.println("NOT GOOOD");
+				}
 				
 				
-				NewListFrame frm = new NewListFrame();
-				frm.setVisible(true);
-				frmNewItem.dispose();
 			}
 		});
 		panel.add(btnAddItem);
@@ -173,10 +194,8 @@ public class NewItemFrame {
 		btnReturn.setBounds(137, 376, 122, 42);
 		btnReturn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-			
-				
-				NewListFrame frm = new NewListFrame();
+							
+				NewListFrame frm = new NewListFrame(user,service,list,listServ,itemServ);
 				frm.setVisible(true);
 				frmNewItem.dispose();
 			}

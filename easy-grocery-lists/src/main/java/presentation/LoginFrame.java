@@ -6,6 +6,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import com.example.easygrocerylists.business.GroceryItemService;
+import com.example.easygrocerylists.business.GroceryListService;
+import com.example.easygrocerylists.business.UserService;
+
 import java.awt.FlowLayout;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -18,6 +23,11 @@ public class LoginFrame {
 	private JTextField userText;
 	private JTextField passwordText;
 
+	static UserService userServ ;
+	static GroceryListService listServ ;
+	static GroceryItemService itemServ;
+	
+	LoginController control = new LoginController();
 	/**
 	 * Launch the application.
 	 */
@@ -25,7 +35,7 @@ public class LoginFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LoginFrame window = new LoginFrame();
+					LoginFrame window = new LoginFrame(userServ,listServ,itemServ);
 					window.frmLogin.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,8 +47,11 @@ public class LoginFrame {
 	/**
 	 * Create the application.
 	 */
-	public LoginFrame() {
+	public LoginFrame(UserService usr,	GroceryListService listServ, GroceryItemService itemServ2 ) {
 		initialize();
+	    this.userServ = usr;
+		this.listServ =listServ ;
+		this.itemServ = itemServ2;
 	}
 
 	/**
@@ -77,6 +90,10 @@ public class LoginFrame {
 		label.setBounds(401, 16, 0, 0);
 		panel.add(label);
 		
+		JLabel lblEr = new JLabel("");
+		lblEr.setBounds(166, 307, 213, 16);
+		panel.add(lblEr);
+		
 		passwordText = new JTextField();
 		passwordText.setBounds(285, 165, 116, 22);
 		panel.add(passwordText);
@@ -85,22 +102,27 @@ public class LoginFrame {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(userText.getText().equals("admin") && passwordText.getText().contentEquals("admin"));
+				
+				control.login(frmLogin,userServ,userText.getText(),passwordText.getText(),lblEr,listServ,itemServ);
+				
+				/*if(userText.getText().equals("admin") && passwordText.getText().contentEquals("admin"));
 				{
 				MainFrame frm = new MainFrame();
 				frm.setVisible(true);
 				frmLogin.dispose();
-				}
+			
+				}*/
 			}
 		});
 		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnLogin.setBounds(207, 231, 123, 25);
 		panel.add(btnLogin);
+		
+		
 	}
 
 	public void setVisible(boolean b) {
 		frmLogin.setVisible(b);
 		
 	}
-
 }

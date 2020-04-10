@@ -8,15 +8,25 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Optional;
 
 import javax.swing.JTextField;
+
+import com.example.easygrocerylists.business.GroceryItemService;
+import com.example.easygrocerylists.business.GroceryListService;
+import com.example.easygrocerylists.business.UserService;
+import com.example.easygrocerylists.data.entity.User;
+
 import javax.swing.JButton;
 
 public class GoalFrame {
 
 	private JFrame frmUpdateGoal;
 	private JTextField caloriesGoalText;
-
+	static Optional<User> user ;
+    static UserService service;
+	static GroceryListService listServ ;
+	static GroceryItemService itemServ;
 	/**
 	 * Launch the application.
 	 */
@@ -24,7 +34,7 @@ public class GoalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GoalFrame window = new GoalFrame();
+					GoalFrame window = new GoalFrame(user,service,listServ,itemServ);
 					window.frmUpdateGoal.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,8 +46,12 @@ public class GoalFrame {
 	/**
 	 * Create the application.
 	 */
-	public GoalFrame() {
+	public GoalFrame(Optional<User> user , UserService service,	GroceryListService listServ,GroceryItemService itemServ ) {
 		initialize();
+		this.user= user;
+		this.service = service;
+		this.listServ =listServ ;
+		this.itemServ = itemServ;
 	}
 
 	/**
@@ -71,7 +85,7 @@ public class GoalFrame {
 		btnUpdateGoal.setBounds(146, 163, 109, 38);
 		btnUpdateGoal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame frm = new MainFrame();
+				MainFrame frm = new MainFrame(user,service,listServ ,itemServ);
 				frm.setVisible(true);
 				frmUpdateGoal.dispose();
 			}
@@ -83,7 +97,7 @@ public class GoalFrame {
 		backBtn.setBounds(146, 222, 109, 38);
 		backBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame frm = new MainFrame();
+				MainFrame frm = new MainFrame(user,service,listServ,itemServ);
 				frm.setVisible(true);
 				frmUpdateGoal.dispose();
 			}
