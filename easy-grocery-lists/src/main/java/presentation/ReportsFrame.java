@@ -12,15 +12,15 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
 
-import com.example.easygrocerylists.business.GroceryItemService;
-import com.example.easygrocerylists.business.GroceryListService;
-import com.example.easygrocerylists.business.ReportAbstractFactory;
-import com.example.easygrocerylists.business.ReportFactory;
-import com.example.easygrocerylists.business.UserService;
-import com.example.easygrocerylists.data.entity.ReportType.reportTypes;
-import com.example.easygrocerylists.data.entity.GroceryItem;
-import com.example.easygrocerylists.data.entity.GroceryList;
-import com.example.easygrocerylists.data.entity.User;
+import com.wasteless.business.GroceryItemService;
+import com.wasteless.business.GroceryListService;
+import com.wasteless.business.ReportAbstractFactory;
+import com.wasteless.business.ReportFactory;
+import com.wasteless.business.UserService;
+import com.wasteless.data.entity.GroceryItem;
+import com.wasteless.data.entity.GroceryList;
+import com.wasteless.data.entity.User;
+import com.wasteless.data.entity.ReportType.reportTypes;
 
 public class ReportsFrame {
 

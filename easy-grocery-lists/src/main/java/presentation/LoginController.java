@@ -5,10 +5,10 @@ import java.util.Optional;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import com.example.easygrocerylists.business.GroceryItemService;
-import com.example.easygrocerylists.business.GroceryListService;
-import com.example.easygrocerylists.business.UserService;
-import com.example.easygrocerylists.data.entity.User;
+import com.wasteless.business.GroceryItemService;
+import com.wasteless.business.GroceryListService;
+import com.wasteless.business.UserService;
+import com.wasteless.data.entity.User;
 
 public class LoginController {
 	

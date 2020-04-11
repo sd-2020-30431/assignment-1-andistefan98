@@ -12,10 +12,10 @@ import java.util.Optional;
 
 import javax.swing.JTextField;
 
-import com.example.easygrocerylists.business.GroceryItemService;
-import com.example.easygrocerylists.business.GroceryListService;
-import com.example.easygrocerylists.business.UserService;
-import com.example.easygrocerylists.data.entity.User;
+import com.wasteless.business.GroceryItemService;
+import com.wasteless.business.GroceryListService;
+import com.wasteless.business.UserService;
+import com.wasteless.data.entity.User;
 
 import javax.swing.JButton;
 
@@ -86,6 +86,8 @@ public class GoalFrame {
 		btnUpdateGoal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			    Optional<User> usr = service.getUserByUsername(user.get().getUsername())	;
+			    
+			    if(Integer.parseInt(caloriesGoalText.getText())>0)
 				user.get().setCaloricGoal(Integer.parseInt(caloriesGoalText.getText()));			
 							
 				//System.out.println(user.get().getCaloricGoal());

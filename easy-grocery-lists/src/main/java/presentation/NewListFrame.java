@@ -8,12 +8,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.ListModel;
 
-import com.example.easygrocerylists.business.GroceryItemService;
-import com.example.easygrocerylists.business.GroceryListService;
-import com.example.easygrocerylists.business.UserService;
-import com.example.easygrocerylists.data.entity.GroceryItem;
-import com.example.easygrocerylists.data.entity.GroceryList;
-import com.example.easygrocerylists.data.entity.User;
+import com.wasteless.business.GroceryItemService;
+import com.wasteless.business.GroceryListService;
+import com.wasteless.business.UserService;
+import com.wasteless.data.entity.GroceryItem;
+import com.wasteless.data.entity.GroceryList;
+import com.wasteless.data.entity.User;
 
 import javax.swing.JScrollBar;
 import javax.swing.JButton;

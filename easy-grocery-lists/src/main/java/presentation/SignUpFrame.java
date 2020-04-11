@@ -13,12 +13,12 @@ import javax.swing.JTextField;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.example.easygrocerylists.business.GroceryItemService;
-import com.example.easygrocerylists.business.GroceryListService;
-import com.example.easygrocerylists.business.SignUpValidator;
-import com.example.easygrocerylists.business.UserService;
-import com.example.easygrocerylists.data.entity.User;
-import com.example.easygrocerylists.data.repository.UserRepository;
+import com.wasteless.business.GroceryItemService;
+import com.wasteless.business.GroceryListService;
+import com.wasteless.business.SignUpValidator;
+import com.wasteless.business.UserService;
+import com.wasteless.data.entity.User;
+import com.wasteless.data.repository.UserRepository;
 
 import javax.swing.JButton;
 

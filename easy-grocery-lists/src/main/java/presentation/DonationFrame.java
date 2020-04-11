@@ -21,13 +21,13 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
-import com.example.easygrocerylists.business.GroceryItemService;
-import com.example.easygrocerylists.business.GroceryListService;
-import com.example.easygrocerylists.business.UserService;
-import com.example.easygrocerylists.data.entity.GroceryItem;
-import com.example.easygrocerylists.data.entity.GroceryList;
-import com.example.easygrocerylists.data.entity.User;
-import com.example.easygrocerylists.business.BurnDownRateCalculator;
+import com.wasteless.business.BurnDownRateCalculator;
+import com.wasteless.business.GroceryItemService;
+import com.wasteless.business.GroceryListService;
+import com.wasteless.business.UserService;
+import com.wasteless.data.entity.GroceryItem;
+import com.wasteless.data.entity.GroceryList;
+import com.wasteless.data.entity.User;
 
 import javax.swing.JButton;
 import java.awt.Color;

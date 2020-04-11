@@ -5,13 +5,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import com.example.easygrocerylists.business.BurnDownRateCalculator;
-import com.example.easygrocerylists.business.GroceryItemService;
-import com.example.easygrocerylists.business.GroceryListService;
-import com.example.easygrocerylists.business.UserService;
-import com.example.easygrocerylists.data.entity.GroceryItem;
-import com.example.easygrocerylists.data.entity.GroceryList;
-import com.example.easygrocerylists.data.entity.User;
+import com.wasteless.business.BurnDownRateCalculator;
+import com.wasteless.business.GroceryItemService;
+import com.wasteless.business.GroceryListService;
+import com.wasteless.business.UserService;
+import com.wasteless.data.entity.GroceryItem;
+import com.wasteless.data.entity.GroceryList;
+import com.wasteless.data.entity.User;
 
 import javax.swing.JButton;
 import java.awt.Color;
