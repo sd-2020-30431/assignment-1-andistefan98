@@ -9,6 +9,7 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
+import com.example.easygrocerylists.business.BurnDownRateCalculator;
 import com.example.easygrocerylists.business.GroceryItemService;
 import com.example.easygrocerylists.business.GroceryListService;
 import com.example.easygrocerylists.business.ItemValidator;
@@ -85,12 +86,12 @@ public class SeeAllListsFrame {
 	private void initialize() {
 		frmGroceryLists = new JFrame();
 		frmGroceryLists.setTitle("Grocery lists");
-		frmGroceryLists.setBounds(100, 100, 574, 438);
+		frmGroceryLists.setBounds(100, 100, 574, 477);
 		frmGroceryLists.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmGroceryLists.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 556, 391);
+		panel.setBounds(0, 0, 556, 430);
 		frmGroceryLists.getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -145,7 +146,7 @@ public class SeeAllListsFrame {
 		
 		JButton backBtn = new JButton("Back");
 		backBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		backBtn.setBounds(174, 343, 121, 35);
+		backBtn.setBounds(210, 382, 121, 35);
 		backBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -202,15 +203,19 @@ public class SeeAllListsFrame {
 			    	SeeAllListsFrame neww = new SeeAllListsFrame(user,service,listServ,itemServ);
 			    	neww.setVisible(true);
 			    	frmGroceryLists.dispose();
-			    }
-			    
-		
+			    }		
 					
 			}
 		});
 		panel.add(consumedBtn);
 		
-	
+		JLabel wasteLbl = new JLabel("");
+		wasteLbl.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		wasteLbl.setBounds(126, 325, 361, 44);
+		String mess = BurnDownRateCalculator.getWasteMessage(user,listServ, service,itemServ);
+		wasteLbl.setText(mess);
+		panel.add(wasteLbl);
+		
 
 	}
 

@@ -3,11 +3,15 @@ package presentation;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -148,10 +152,13 @@ public class DonationFrame {
 		
 		List<GroceryItem> expiresSoon = new ArrayList<GroceryItem>();
 		for(GroceryItem itmm : itemsOfUser) {
-			 LocalDate expirationLocal = BurnDownRateCalculator.convertToLocalDateViaInstant(itmm.getExpirationDate());
+			 //LocalDate expirationLocal = BurnDownRateCalculator.convertToLocalDateViaInstant(itmm.getExpirationDate());
 			 Calendar calendar = Calendar.getInstance();
-		       int dayOfYear = calendar.get(Calendar.DAY_OF_YEAR); 
-		       if(expirationLocal.getDayOfYear() - dayOfYear <= 3) {
+			 Date now = new Date();
+			 long diff = now.getTime() - itmm.getExpirationDate().getTime();
+			    long days = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+		       
+		       if(days <= 2) {
 		    	   expiresSoon.add(itmm);
 		       }
 		}
@@ -163,7 +170,7 @@ public class DonationFrame {
 		dueToExpireList.setBounds(368, 49, 251, 119);
 		scrollPane_2.setViewportView(dueToExpireList);
 		dueToExpireList.setVisibleRowCount(7);
-		dueToExpireList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		//dueToExpireList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		panel.add(scrollPane_2);
 		

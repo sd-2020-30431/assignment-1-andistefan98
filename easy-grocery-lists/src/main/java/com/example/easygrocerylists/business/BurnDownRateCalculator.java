@@ -2,14 +2,19 @@ package com.example.easygrocerylists.business;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 import com.example.easygrocerylists.data.entity.GroceryItem;
+import com.example.easygrocerylists.data.entity.GroceryList;
+import com.example.easygrocerylists.data.entity.User;
 
 public class BurnDownRateCalculator {
 	
-	float computeBurndownRateOfProduct(GroceryItem item) {
+	static float computeBurndownRateOfProduct(GroceryItem item) {
 		
 		float calories = item.getCalorieValue();
 	    int quantity = item.getQuantity() ; 
@@ -36,6 +41,43 @@ public class BurnDownRateCalculator {
 	    return dateToConvert.toInstant()
 	      .atZone(ZoneId.systemDefault())
 	      .toLocalDate();
+	}
+
+
+	public static String getWasteMessage(Optional<User> user, GroceryListService listServ, UserService service, GroceryItemService itemServ) {
+		String message ; 
+
+		  List<GroceryList> usersLists = listServ.getAllByUserId(user.get());
+			
+			
+			List<GroceryItem> itemsOfUser = new ArrayList<GroceryItem>();
+			
+		 for(GroceryList lst : usersLists) {
+			 System.out.println("list :  " + lst.getId() + "\n");
+			 
+			 List<GroceryItem> itemsFromList = itemServ.findByList(lst);
+
+			 for(GroceryItem itm: itemsFromList) {
+				itemsOfUser.add(itm);
+			 }
+			}
+		 
+		 float sum = 0;
+		 
+		 for(GroceryItem item : itemsOfUser) {
+			 if(item.getConsumptionDate()==null || item.getConsumptionDate().getYear()<2020) {//at first I added wrongly some values for the conumption date
+				sum += computeBurndownRateOfProduct(item); 
+			 }
+		 }
+		 
+		 if(sum > user.get().getCaloricGoal()) {
+			 float val = sum - user.get().getCaloricGoal();
+			 message ="Waste level exceeded with " + val;
+		 }
+		 else {
+			 message ="Waste level in normal limits " ;
+		 }
+		return message;
 	}
 
 }

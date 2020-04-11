@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.example.easygrocerylists.business.BurnDownRateCalculator;
 import com.example.easygrocerylists.business.GroceryItemService;
 import com.example.easygrocerylists.business.GroceryListService;
 import com.example.easygrocerylists.business.UserService;
@@ -22,6 +23,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import javax.swing.JLabel;
 
 public class MainFrame {
 
@@ -67,13 +69,13 @@ public class MainFrame {
 	private void initialize() {
 		frmMainMenu = new JFrame();
 		frmMainMenu.setTitle("Main Menu");
-		frmMainMenu.setBounds(100, 100, 597, 537);
+		frmMainMenu.setBounds(100, 100, 597, 561);
 		frmMainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMainMenu.getContentPane().setLayout(null);
 		frmMainMenu.setLocationRelativeTo(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 587, 498);
+		panel.setBounds(0, 0, 579, 514);
 		frmMainMenu.getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -150,6 +152,8 @@ public class MainFrame {
 			}
 		});
 		panel.add(btnDonate);
+		
+		
 	}
 
 	public void setVisible(boolean b) {
