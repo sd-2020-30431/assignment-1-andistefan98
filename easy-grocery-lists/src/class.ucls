@@ -1,6 +1,266 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
-  associations="true" dependencies="false" nesting-relationships="true">  
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="com.wasteless.EasyGroceryListsApplication" project="easy-grocery-lists" 
+    file="/easy-grocery-lists/src/main/java/com/wasteless/EasyGroceryListsApplication.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="196" width="226" x="239" y="115"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.wasteless.business.BurnDownRateCalculator" project="easy-grocery-lists" 
+    file="/easy-grocery-lists/src/main/java/com/wasteless/business/BurnDownRateCalculator.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="142" width="575" x="609" y="132"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.wasteless.business.ItemValidator" project="easy-grocery-lists" 
+    file="/easy-grocery-lists/src/main/java/com/wasteless/business/ItemValidator.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="142" width="429" x="1224" y="132"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.wasteless.business.GroceryItemService" project="easy-grocery-lists" 
+    file="/easy-grocery-lists/src/main/java/com/wasteless/business/GroceryItemService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="196" width="270" x="1693" y="132"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="com.wasteless.business.GroceryListService" project="easy-grocery-lists" 
+    file="/easy-grocery-lists/src/main/java/com/wasteless/business/GroceryListService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="178" width="255" x="2003" y="132"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="com.wasteless.business.UserService" project="easy-grocery-lists" 
+    file="/easy-grocery-lists/src/main/java/com/wasteless/business/UserService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="178" width="283" x="2943" y="368"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="com.wasteless.business.NewReportGenerator" project="easy-grocery-lists" 
+    file="/easy-grocery-lists/src/main/java/com/wasteless/business/NewReportGenerator.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="106" width="236" x="2667" y="132"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="com.wasteless.business.SignUpValidator" project="easy-grocery-lists" 
+    file="/easy-grocery-lists/src/main/java/com/wasteless/business/SignUpValidator.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="106" width="206" x="2943" y="132"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="9" language="java" name="com.wasteless.data.entity.ReportType.reportTypes" 
+    project="easy-grocery-lists" file="/easy-grocery-lists/src/main/java/com/wasteless/data/entity/ReportType.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="152" x="1708" y="602"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <interface id="10" language="java" name="com.wasteless.data.entity.Report" project="easy-grocery-lists" 
+    file="/easy-grocery-lists/src/main/java/com/wasteless/data/entity/Report.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="88" width="281" x="1226" y="602"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="11" language="java" name="com.wasteless.data.entity.GroceryItem" project="easy-grocery-lists" 
+    file="/easy-grocery-lists/src/main/java/com/wasteless/data/entity/GroceryItem.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="484" width="318" x="450" y="602"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="com.wasteless.data.entity.WeeklyReport" project="easy-grocery-lists" 
+    file="/easy-grocery-lists/src/main/java/com/wasteless/data/entity/WeeklyReport.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="106" width="281" x="1066" y="276"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="com.wasteless.data.entity.FinalReport" project="easy-grocery-lists" 
+    file="/easy-grocery-lists/src/main/java/com/wasteless/data/entity/FinalReport.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="142" width="366" x="402" y="276"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="com.wasteless.data.entity.User" project="easy-grocery-lists" 
+    file="/easy-grocery-lists/src/main/java/com/wasteless/data/entity/User.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="340" width="256" x="808" y="602"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="com.wasteless.data.entity.GroceryList" project="easy-grocery-lists" 
+    file="/easy-grocery-lists/src/main/java/com/wasteless/data/entity/GroceryList.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="286" width="218" x="808" y="276"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="com.wasteless.data.entity.ReportType" project="easy-grocery-lists" 
+    file="/easy-grocery-lists/src/main/java/com/wasteless/data/entity/ReportType.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="88" width="152" x="1708" y="276"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="com.wasteless.data.entity.MonthlyReport" project="easy-grocery-lists" 
+    file="/easy-grocery-lists/src/main/java/com/wasteless/data/entity/MonthlyReport.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="106" width="281" x="1387" y="276"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <realization id="18">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <association id="19">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="20" name="list"/>      
+      <multiplicity id="21" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="22">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="23" name="userServ"/>      
+      <multiplicity id="24" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="25">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="26" name="userId"/>      
+      <multiplicity id="27" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="28">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <association id="29">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="30" name="itemServ"/>      
+      <multiplicity id="31" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="32">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="33" name="listServ"/>      
+      <multiplicity id="34" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="35">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="36" name="userServ"/>      
+      <multiplicity id="37" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="38">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="39" name="itemsList"/>      
+      <multiplicity id="40" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="41">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="42" name="targetItems"/>      
+      <multiplicity id="43" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="44">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="45" name="groceryLists"/>      
+      <multiplicity id="46" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="47">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="9"/>  
+  </nesting>  
+  <association id="48">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="49" name="wastedItems"/>      
+      <multiplicity id="50" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

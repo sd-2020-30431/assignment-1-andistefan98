@@ -12,13 +12,16 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
 
+import com.wasteless.business.AbstractFactory;
 import com.wasteless.business.GroceryItemService;
 import com.wasteless.business.GroceryListService;
-import com.wasteless.business.ReportAbstractFactory;
-import com.wasteless.business.ReportFactory;
+
+import com.wasteless.business.ReportCreator;
+
 import com.wasteless.business.UserService;
 import com.wasteless.data.entity.GroceryItem;
 import com.wasteless.data.entity.GroceryList;
+import com.wasteless.data.entity.Report;
 import com.wasteless.data.entity.User;
 import com.wasteless.data.entity.ReportType.reportTypes;
 
@@ -99,8 +102,9 @@ public class ReportsFrame {
 				 }
 				}
 		
-			ReportFactory fct = new ReportFactory(reportTypes.Weekly , itemsOfUser); 
-	
+			//ReportFactory fct = new ReportFactory(reportTypes.Weekly , itemsOfUser); 
+			 AbstractFactory fct = ReportCreator.getFactory(reportTypes.Weekly, itemsOfUser);
+			 Report rep=fct.getReport(reportTypes.Weekly, itemsOfUser);  
 				
 			}
 		});
@@ -125,8 +129,9 @@ public class ReportsFrame {
 				 }
 				}
 		
-			ReportFactory fct = new ReportFactory(reportTypes.Monthly , itemsOfUser); 
-	
+			//ReportFactory fct = new ReportFactory(reportTypes.Monthly , itemsOfUser); 
+			 AbstractFactory fct = ReportCreator.getFactory(reportTypes.Monthly, itemsOfUser);
+			 Report rep=fct.getReport(reportTypes.Monthly, itemsOfUser);  
 				
 			}
 		});
