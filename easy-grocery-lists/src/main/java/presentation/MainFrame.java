@@ -99,6 +99,13 @@ public class MainFrame {
 		btnSeeReports.setForeground(Color.BLACK);
 		btnSeeReports.setFont(new Font("Sylfaen", Font.PLAIN, 24));
 		btnSeeReports.setBounds(137, 103, 310, 67);
+		btnSeeReports.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ReportsFrame frm = new ReportsFrame(user,service,listServ,itemServ);
+				frm.setVisible(true);
+				frmMainMenu.dispose();
+			}
+		});
 		panel.add(btnSeeReports);
 		
 		
@@ -121,9 +128,6 @@ public class MainFrame {
 		showAllBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-						if(user.isPresent()){
-							System.out.println("ESTE");
-						}
 						
 						SeeAllListsFrame lstName = new SeeAllListsFrame(user,service,listServ,itemServ);
 						lstName.setVisible(true);

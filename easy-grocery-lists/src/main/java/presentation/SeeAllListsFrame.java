@@ -11,6 +11,7 @@ import javax.swing.ListSelectionModel;
 
 import com.example.easygrocerylists.business.GroceryItemService;
 import com.example.easygrocerylists.business.GroceryListService;
+import com.example.easygrocerylists.business.ItemValidator;
 import com.example.easygrocerylists.business.UserService;
 import com.example.easygrocerylists.data.entity.GroceryItem;
 import com.example.easygrocerylists.data.entity.GroceryList;
@@ -23,10 +24,14 @@ import java.awt.Font;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
 public class SeeAllListsFrame {
 
@@ -35,7 +40,8 @@ public class SeeAllListsFrame {
 	static UserService service;
 	static GroceryListService listServ;
 	static GroceryItemService itemServ;
-	
+	private JTextField textField;
+	ItemValidator validator = new ItemValidator();
 
 	/**
 	 * Launch the application.
@@ -79,12 +85,12 @@ public class SeeAllListsFrame {
 	private void initialize() {
 		frmGroceryLists = new JFrame();
 		frmGroceryLists.setTitle("Grocery lists");
-		frmGroceryLists.setBounds(100, 100, 511, 438);
+		frmGroceryLists.setBounds(100, 100, 574, 438);
 		frmGroceryLists.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmGroceryLists.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 493, 391);
+		panel.setBounds(0, 0, 556, 391);
 		frmGroceryLists.getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -139,7 +145,7 @@ public class SeeAllListsFrame {
 		
 		JButton backBtn = new JButton("Back");
 		backBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		backBtn.setBounds(174, 353, 97, 25);
+		backBtn.setBounds(174, 343, 121, 35);
 		backBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -150,6 +156,61 @@ public class SeeAllListsFrame {
 			}
 		});
 		panel.add(backBtn);
+		
+		JLabel lblConsumedAnotherItem = new JLabel("Consumed another item?");
+		lblConsumedAnotherItem.setBounds(392, 94, 152, 54);
+		panel.add(lblConsumedAnotherItem);
+		
+		JLabel lblDateDay = new JLabel("Write date as dd/mm/yyyy");
+		lblDateDay.setBounds(392, 166, 152, 16);
+		panel.add(lblDateDay);
+		
+		textField = new JTextField();
+		textField.setBounds(402, 195, 142, 22);
+		panel.add(textField);
+		textField.setColumns(10);
+		
+		
+		JLabel lblInvalidDate = new JLabel("");
+		lblInvalidDate.setBounds(434, 312, 87, 16);
+		panel.add(lblInvalidDate);
+		
+		
+		JButton consumedBtn = new JButton("Set as consumed");
+		consumedBtn.setBounds(406, 248, 138, 35);
+		consumedBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				GroceryItem itm = (GroceryItem) lsst.getSelectedValue();
+				Date date1= new Date();
+			    try {
+					 date1=new SimpleDateFormat("dd/MM/yyyy").parse(textField.getText());
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			    
+			    
+			    if(validator.checkConsumptionDate(date1)==true) {
+			    itm.setConsumptionDate(date1);
+			    itemServ.addItem(itm);
+			    
+			    }
+			    else {
+			    	lblInvalidDate.setText("Invalid date.");
+			    	SeeAllListsFrame neww = new SeeAllListsFrame(user,service,listServ,itemServ);
+			    	neww.setVisible(true);
+			    	frmGroceryLists.dispose();
+			    }
+			    
+		
+					
+			}
+		});
+		panel.add(consumedBtn);
+		
+	
 
 	}
 

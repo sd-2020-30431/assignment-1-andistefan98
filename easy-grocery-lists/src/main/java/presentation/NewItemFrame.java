@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -116,11 +118,7 @@ public class NewItemFrame {
 		lblExpirationDate.setBounds(51, 231, 112, 36);
 		panel.add(lblExpirationDate);
 		
-		JLabel lblConsumption = new JLabel("Consumption");
-		lblConsumption.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblConsumption.setBounds(51, 272, 112, 36);
-		panel.add(lblConsumption);
-		
+	
 		nameText = new JTextField();
 		nameText.setBounds(192, 40, 135, 28);
 		panel.add(nameText);
@@ -142,16 +140,27 @@ public class NewItemFrame {
 				String name = nameText.getText();
 				Float caloricValue = Float.parseFloat(caloriesText.getText());
 			 	int quantity = Integer.parseInt(quantText.getText());
-				Date purchase = ItemValidator.dateCreator(pur2.getText(),pur1.getText());
-				Date expiration = ItemValidator.dateCreator(exp2.getText(),exp1.getText());
-				Date consumption = ItemValidator.dateCreator(con2.getText(),con1.getText());
+			 	//  Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
+			
+			 	Date purchase = new Date();
+			 	Date expiration = new Date();
+			 	Date consumption = new Date();
+				try {
+					purchase = new SimpleDateFormat("dd/MM/yyyy").parse(pur1.getText());
+					expiration = new SimpleDateFormat("dd/MM/yyyy").parse(exp1.getText());
+					//consumption = new SimpleDateFormat("dd/MM/yyyy").parse(con1.getText());
+					
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 				
 				
 				if(ItemValidator.checkItemValidity(name,quantity,caloricValue , purchase, expiration, consumption,list) == true)
 				{
 					
-					GroceryItem newItm = new GroceryItem(name,quantity,caloricValue , purchase, expiration, consumption,list);
+					GroceryItem newItm = new GroceryItem(name,quantity,caloricValue , purchase, expiration,list);
 					intermList.add(newItm);
 					AddItemController.addItem(frmNewItem , user ,service, list,	listServ , itemServ , newItm , intermList);
 				}
@@ -167,34 +176,16 @@ public class NewItemFrame {
 		
 		
 		pur1 = new JTextField();
-		pur1.setBounds(192, 187, 59, 28);
+		pur1.setBounds(192, 187, 135, 28);
 		panel.add(pur1);
 		pur1.setColumns(10);
 		
 		exp1 = new JTextField();
-		exp1.setBounds(192, 236, 59, 28);
+		exp1.setBounds(192, 236, 135, 28);
 		panel.add(exp1);
 		exp1.setColumns(10);
 		
-		con1 = new JTextField();
-		con1.setBounds(192, 277, 59, 28);
-		panel.add(con1);
-		con1.setColumns(10);
 		
-		pur2 = new JTextField();
-		pur2.setBounds(268, 187, 59, 28);
-		panel.add(pur2);
-		pur2.setColumns(10);
-		
-		exp2 = new JTextField();
-		exp2.setBounds(263, 236, 64, 28);
-		panel.add(exp2);
-		exp2.setColumns(10);
-		
-		con2 = new JTextField();
-		con2.setBounds(263, 277, 64, 28);
-		panel.add(con2);
-		con2.setColumns(10);
 		
 		
 		JButton btnReturn = new JButton("Return");
@@ -209,7 +200,7 @@ public class NewItemFrame {
 		});
 		panel.add(btnReturn);
 		
-		lblTheDatesMust = new JLabel("The dates must be written in the format month / day !!");
+		lblTheDatesMust = new JLabel("The dates must be written in the format dd/mm/yyyy ");
 		lblTheDatesMust.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblTheDatesMust.setBounds(12, 431, 376, 28);
 		panel.add(lblTheDatesMust);

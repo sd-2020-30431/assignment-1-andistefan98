@@ -46,13 +46,13 @@ public class GroceryItem {
 	
 	
 	
-	public GroceryItem(String nmm, int qnt , float calories, Date purch, Date exp, Date consump,GroceryList list) {
+	public GroceryItem(String nmm, int qnt , float calories, Date purch, Date exp, GroceryList list) {
 		this.name= nmm;
 		this.quantity = qnt;
 		this.calorieValue = calories;
 		this.purchaseDate = purch;
 		this.expirationDate =exp;
-		this.consumptionDate = consump; 
+		//this.consumptionDate = consump; 
 		this.list= list;
 		
 	}
@@ -116,7 +116,7 @@ public class GroceryItem {
 
     @Override
 	public String toString() {
-		return "Product: " + name + "   Calories:  " + calorieValue;
+		return "Product: " + name + "   Calories:  " + calorieValue  +  "   Quantity:  " + quantity;
 		
 	}
 	

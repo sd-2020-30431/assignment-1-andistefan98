@@ -29,15 +29,9 @@ public class ItemValidator {
 		if(quantity<=0)
 			return false;
 		
-		if(month == purchase.getMonth()) 
-			if(dayOfMonth < purchase.getDate())
-				return false;
-		
-		if(month < purchase.getMonth())
-			return false;
-		
-		
-		
+	if(purchase.after(today))
+		return false;
+
 		
 		return true;
 		
@@ -65,6 +59,16 @@ public class ItemValidator {
 	    return date;
 		
 		
+	}
+	
+	
+	public boolean checkConsumptionDate(Date consump) {
+		if(consump.compareTo(new Date())>0) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 }
